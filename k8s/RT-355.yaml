@@ -15,8 +15,8 @@
           namespace: istio-gateways
           cluster: cluster1
       http:
-        - name: httpbin-355-renamed
-        #- name: httpbin-355
+        #- name: httpbin-355-renamed
+        - name: httpbin-355
           matchers:
           - uri:
               prefix: /test
