@@ -19,16 +19,11 @@
         - name: httpbin-796
           matchers:
           - uri:
-              prefix: /test
-          forwardTo:
-            pathRewrite: /
-            autoHostRewrite: true
-            destinations:
-              - ref:
-                  name: google
-                  namespace: httpbin
-                kind: EXTERNAL_SERVICE
-                port:
-                  number: 80
+              prefix: /
+          delegate:
+            routeTables:
+              - labels:
+                  route-table: middle
+            sortMethod: ROUTE_SPECIFICITY
           labels:
             route: httpbin-796
