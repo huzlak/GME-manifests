@@ -15,8 +15,8 @@
           namespace: istio-gateways
           cluster: cluster1
       http:
-        #- name: httpbin-301-renamed
-        - name: httpbin-301
+        - name: httpbin-301-renamed
+        #- name: httpbin-301
           matchers:
           - uri:
               prefix: /
