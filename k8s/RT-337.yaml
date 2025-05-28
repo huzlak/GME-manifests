@@ -1,0 +1,34 @@
+    apiVersion: networking.gloo.solo.io/v2
+    kind: RouteTable
+    metadata:
+      name: httpbin-337
+      namespace: httpbin
+      labels:
+        expose: "true"
+        jwt: "true"
+        passthrough: "true"
+    spec:
+      hosts:
+        - httpbin-337.test
+      virtualGateways:
+        - name: north-south-gw
+          namespace: istio-gateways
+          cluster: cluster1
+      http:
+        - name: httpbin-337-renamed
+        #- name: httpbin-337
+          matchers:
+          - uri:
+              prefix: /test
+          forwardTo:
+            pathRewrite: /
+            autoHostRewrite: true
+            destinations:
+              - ref:
+                  name: google
+                  namespace: httpbin
+                kind: EXTERNAL_SERVICE
+                port:
+                  number: 80
+          labels:
+            route: httpbin-337
