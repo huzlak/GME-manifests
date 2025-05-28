@@ -15,8 +15,8 @@
           namespace: istio-gateways
           cluster: cluster1
       http:
-        - name: httpbin-910-renamed
-        #- name: httpbin-910
+        #- name: httpbin-910-renamed
+        - name: httpbin-910
           matchers:
           - uri:
               prefix: /test
