@@ -23,7 +23,7 @@
           delegate:
             routeTables:
               - labels:
-                  route-table: middle
+                  route-table: middle-852
             sortMethod: ROUTE_SPECIFICITY
           labels:
             route: httpbin-852

@@ -1,0 +1,26 @@
+apiVersion: networking.gloo.solo.io/v2
+kind: RouteTable
+metadata:
+  name: delegated-347
+  namespace: httpbin
+  labels:
+    expose: "true"
+    route-table: middle-347
+    passthrough: "true"
+spec:
+  http:
+    - matchers:
+      - uri:
+          prefix: /test
+      forwardTo:
+        pathRewrite: /
+        autoHostRewrite: true
+        destinations:
+          - ref:
+              name: google
+              namespace: httpbin
+            kind: EXTERNAL_SERVICE
+            port:
+              number: 80	  
+      name: sub
+      #name: pub

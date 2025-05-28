@@ -1,11 +1,11 @@
 apiVersion: networking.gloo.solo.io/v2
 kind: RouteTable
 metadata:
-  name: delegated
+  name: delegated-104
   namespace: httpbin
   labels:
     expose: "true"
-    route-table: middle
+    route-table: middle-104
     passthrough: "true"
 spec:
   http:
