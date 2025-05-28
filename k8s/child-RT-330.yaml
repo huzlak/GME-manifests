@@ -22,5 +22,5 @@ spec:
             kind: EXTERNAL_SERVICE
             port:
               number: 80	  
-      name: sub
-      #name: pub
+      #name: sub
+      name: pub
