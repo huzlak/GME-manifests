@@ -11,6 +11,8 @@ spec:
   http:
     - matchers:
       - uri:
+          prefix: /test/
+      - uri:
           prefix: /test
       forwardTo:
         pathRewrite: /
