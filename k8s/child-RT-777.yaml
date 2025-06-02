@@ -22,7 +22,8 @@ spec:
               name: google
               namespace: httpbin
             kind: EXTERNAL_SERVICE
+            #kind: SERVICE
             port:
-              number: 80	  
+              number: 80
       name: sub
       #name: pub
