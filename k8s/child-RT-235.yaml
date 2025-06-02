@@ -25,5 +25,5 @@ spec:
             #kind: SERVICE
             port:
               number: 80
-      #name: sub
-      name: pub
+      name: sub
+      #name: pub
