@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: in-ambient
+  namespace: httpbin
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: in-ambient
+  namespace: httpbin
+  labels:
+    app: in-ambient
+    service: in-ambient
+    solo.io/service-scope: global
+spec:
+  ports:
+  - name: http
+    port: 8000
+    targetPort: 80
+  selector:
+    app: in-ambient
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: in-ambient
+  namespace: httpbin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: in-ambient
+      version: v1
+  template:
+    metadata:
+      labels:
+        app: in-ambient
+        version: v1
+        istio.io/dataplane-mode: ambient
+        sidecar.istio.io/inject: "false"
+        istio-injection: disabled
+    spec:
+      serviceAccountName: in-ambient
+      containers:
+      - image: nicolaka/netshoot:latest
+        imagePullPolicy: IfNotPresent
+        name: netshoot
+        command: ["/bin/bash"]
+        args: ["-c", "while true; do ping localhost; sleep 60;done"]
