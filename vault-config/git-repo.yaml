@@ -1,0 +1,10 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: vault-config-repo
+  namespace: vault 
+spec:
+  interval: 1m
+  url: https://github.com/huzlak/GME-manifests
+  ref:
+    branch: httpbin

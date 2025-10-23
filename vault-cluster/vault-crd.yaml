@@ -1,0 +1,41 @@
+apiVersion: vault.banzaicloud.com/v1alpha1
+kind: Vault
+metadata:
+  name: vault
+  namespace: vault
+spec:
+  size: 1
+  service:
+    type: ClusterIP
+    port: 8200
+  unsealConfig:
+    kubernetesSecret:
+      secretName: vault-unseal-keys
+  bootstrap:
+    rootTokenSecretName: vault-root-token
+  config:
+    storage:
+      inmem: {}
+    listener:
+      tcp:
+        address: "[::]:8200"
+        cluster_address: "[::]:8201"
+        tls_disable: true 
+    ui:
+      enabled: true
+  externalConfig:
+    policies:
+      - name: allow-cluster-info
+        rules: path "sys/cluster/self" { capabilities = ["read"] }
+    auth:
+      - type: kubernetes
+        path: kubernetes
+        roles:
+          - name: vault-unseal
+            bound_service_account_names:
+              - vault 
+            bound_service_account_namespaces:
+              - vault
+            policies:
+              - allow-cluster-info
+            ttl: 1h
