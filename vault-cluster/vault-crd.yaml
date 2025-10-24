@@ -5,9 +5,9 @@ metadata:
   namespace: vault
 spec:
   size: 1
-  service:
-    type: ClusterIP
-    port: 8200
+    #  service:
+    #    type: ClusterIP
+    #    port: 8200
       #  unsealConfig:
       #    kubernetesSecret:
       #      secretName: vault-unseal-keys
