@@ -8,11 +8,11 @@ spec:
   service:
     type: ClusterIP
     port: 8200
-  unsealConfig:
-    kubernetesSecret:
-      secretName: vault-unseal-keys
-  bootstrap:
-    rootTokenSecretName: vault-root-token
+      #  unsealConfig:
+      #    kubernetesSecret:
+      #      secretName: vault-unseal-keys
+      #  bootstrap:
+      #    rootTokenSecretName: vault-root-token
   config:
     storage:
       inmem: {}
