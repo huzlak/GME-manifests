@@ -12,11 +12,11 @@ spec:
     name: vault-config-repo 
   path: "./vault-config/terraform"
   env:
-    - name: VAULT_TOKEN
-      valueFrom:
-        secretKeyRef:
-          name: vault-root-token 
-          key: token
+    #- name: VAULT_TOKEN
+    #  valueFrom:
+    #    secretKeyRef:
+    #      name: vault-root-token 
+    #      key: token
     - name: VAULT_ADDR
       value: "http://vault.vault.svc.cluster.local:8200"
         #  dependsOn:
