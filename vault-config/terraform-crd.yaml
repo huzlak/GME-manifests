@@ -21,4 +21,4 @@ spec:
       value: "http://vault.vault.svc.cluster.local:8200"
   dependsOn:
     - name: vault
-      namespace: argocd
+      namespace: vault
